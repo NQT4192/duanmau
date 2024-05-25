@@ -19,18 +19,22 @@ import com.google.android.material.navigation.NavigationView;
 
 import fpoly.thangnqph44861.duanmau.Fragments.DoiMatKhauFragment;
 import fpoly.thangnqph44861.duanmau.Fragments.QuanLyLoaiSachFragment;
+import fpoly.thangnqph44861.duanmau.Fragments.QuanLyPhieuMuonFragment;
 import fpoly.thangnqph44861.duanmau.Fragments.QuanLySachFragment;
 import fpoly.thangnqph44861.duanmau.Fragments.QuanLyThanhVienFragment;
 import fpoly.thangnqph44861.duanmau.Fragments.ThemThanhVienFragment;
+import fpoly.thangnqph44861.duanmau.Fragments.ThongKeDoanhThuFragment;
+import fpoly.thangnqph44861.duanmau.Fragments.TopFragment;
 
 public class MainActivity extends AppCompatActivity {
+
     MaterialToolbar toolbar;
     DrawerLayout drawerLayout;
     NavigationView naviView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         toolbar = findViewById(R.id.toolbar);
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -48,13 +52,15 @@ public class MainActivity extends AppCompatActivity {
         actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
         actionBarDrawerToggle.syncState();
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-
-
+        setFragment(new QuanLyPhieuMuonFragment(),"Quản lý phiếu mượn");
+        //tạo set fragment cho activity
         naviView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-
+                //Quản lý Fragment
+                if (item.getItemId() == R.id.imnu_QLpm) {
+                    setFragment(new QuanLyPhieuMuonFragment(), "Quản lý phiếu mượn");
+                }
                 if (item.getItemId() == R.id.imnu_QLls) {
                     setFragment(new QuanLyLoaiSachFragment(), "Quản Lý loai sach");
                 }
@@ -64,7 +70,14 @@ public class MainActivity extends AppCompatActivity {
                 if (item.getItemId() == R.id.imnu_QLtv) {
                     setFragment(new QuanLyThanhVienFragment(), "Quản lý Thành Viên");
                 }
-
+                //Thống Ke Fragment
+                if (item.getItemId() == R.id.inmu_TopBook){
+                    setFragment(new TopFragment() , "Top sách");
+                }
+                if (item.getItemId() == R.id.inmu_TopDT){
+                    setFragment(new ThongKeDoanhThuFragment() , "Thống kê");
+                }
+                //Người Dủng Fragment
                 if (item.getItemId() == R.id.inmu_add_user){
                     setFragment(new ThemThanhVienFragment() , "Thêm thành viên");
                 }

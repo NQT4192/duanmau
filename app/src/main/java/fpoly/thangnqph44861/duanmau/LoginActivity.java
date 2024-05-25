@@ -38,14 +38,12 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
         chkRem = findViewById(R.id.chkRem);
         dao = new ThuThuDAO(this);
-        ThanhVienDAO ds = new ThanhVienDAO(this);
         btnQS = findViewById(R.id.btnQS);
         btnLogin.setOnClickListener(view ->{
             checkLogin();
         });
         btnQS.setOnClickListener(v -> {
             dao.insertThuThu(new ThuThu("ad" , "ad" ,"ad"));
-
             Toast.makeText(this, "Đã add admin default", Toast.LENGTH_SHORT).show();
         });
         SharedPreferences sharedPreferences = getSharedPreferences("USER_FILE" , MODE_PRIVATE);
